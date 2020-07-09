@@ -54,14 +54,40 @@
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script type="text/javascript">
-    const getData = async function() {
+    const displayData = async function() {
+      
       const tables = await $.get("/api/tables");
       const waitlist = await $.get("/api/waitlist");
+  
 
-      console.log(tables, waitlist);
+      tables.forEach((table, index) => {
+        $("#tableList").append(`
+          <li class="list-group-item mt-4">
+            <h2>Table #${index + 1}</h2>
+            <hr>
+            <h3>ID: ${table.uniqueId}</h3>
+            <h3>Name: ${table.name}</h3>
+            <h3>Email: ${table.email}</h3>
+            <h3>Phone: ${table.phoneNumber}</h3>
+          </li>
+        `);
+      });
+
+      waitlist.forEach((item, index) => {
+        $("#waitList").append(`
+          <li class="list-group-item mt-4">
+            <h2>Table #${index + 1}</h2>
+            <hr>
+            <h3>ID: ${item.uniqueId}</h3>
+            <h3>Name: ${item.name}</h3>
+            <h3>Email: ${item.email}</h3>
+            <h3>Phone: ${item.phoneNumber}</h3>
+          </li>
+        `);
+      });
     };
 
-    getData();
+    displayData();
   </script>
 </body>
 

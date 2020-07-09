@@ -55,7 +55,7 @@ app.get("/api/waitlist", function (req, res) {
 });
 
 // Create New reservation - takes in JSON input
-app.post("/api/waitlist", function (req, res) {
+app.post("/api/tables", function (req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   var newReservation = req.body;
@@ -69,11 +69,13 @@ app.post("/api/waitlist", function (req, res) {
 
   if (tables.length < 5) {
     tables.push(newReservation);
+    res.send("Table")
   } else {
     waitingList.push(newReservation);
+    res.send("Waitlist")
   }
 
-  res.json(newReservation);
+
 });
 
 // Starts the server to begin listening

@@ -78,11 +78,23 @@
       };
 
       // Question: What does this code do??
-      $.post("/api/table", newReservation)
+      $.get("/api/tables", function (data) {
+        tables = data.length;
+        console.log(tables);
+        if (tables < 5){
+          $.post("/api/tables", newReservation)
         .then(function(data) {
           console.log("add html", data);
-          alert("Adding reservation...");
+          alert("Adding your table");
         });
+      } else {
+        $.post("/api/waitlist", newReservation)
+        .then(function(data) {
+          console.log("add html", data);
+          alet("Sorry, your table is on the waitlist");
+        });
+      }
+     });
     });
   </script>
 

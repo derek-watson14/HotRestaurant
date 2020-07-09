@@ -64,7 +64,9 @@
   </div>
 
   <script type="text/javascript">
+  
     const randomId = () => '_' + Math.random().toString(36).substr(2, 9);
+
     // Question: What does this code do?
     $("#add-btn").on("click", function(event) {
       event.preventDefault();
@@ -72,14 +74,14 @@
         name: $("#name").val().trim(),
         phoneNumber: $("#phone-number").val().trim(),
         email: $("#email").val().trim(),
-        forcePoints: randomId(),
+        uniqueId: randomId(),
       };
 
       // Question: What does this code do??
       $.post("/api/table", newReservation)
         .then(function(data) {
           console.log("add html", data);
-          alert("Adding character...");
+          alert("Adding reservation...");
         });
     });
   </script>

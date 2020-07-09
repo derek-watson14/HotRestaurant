@@ -12,7 +12,24 @@ var PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+var tables = [
+  {
+    name: "Bobby",
+    email: "fakeEmail.com",
+    phoneNumber: "999-9999",
+    uniqueId: 123
 
+  }  
+
+];
+var waitingList = [
+  {
+    name: "Brian",
+    email: "anotherFakeEmail.com",
+    phoneNumber: "999-9999",
+    uniqueId: 123
+  }
+]; 
 // Routes
 // =============================================================
 
@@ -30,9 +47,11 @@ app.get("/reserve", function(req, res) {
   });
 
 app.get("/api/tables", function(req, res) {
+  return res.json(tables);
   });
 
 app.get("/api/waitlist", function(req, res) {
+  return res.json(waitingList);
   });
 
   // Create New reservation - takes in JSON input
@@ -48,6 +67,8 @@ app.post("/api/waitlist", function(req, res) {
   
     console.log(newReservation);
 
+<<<<<<< HEAD
+=======
     if(tables.length>4){
         tables.push(newReservation);
     } else {
@@ -57,6 +78,7 @@ app.post("/api/waitlist", function(req, res) {
     res.json(newReservation);
   });
 
+>>>>>>> master
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function() {

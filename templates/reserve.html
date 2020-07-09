@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Hot Restautant</title>
@@ -8,6 +9,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
+
 <body>
   <div class="container">
     <div class="jumbotron text-center">
@@ -15,7 +17,8 @@
       <hr>
       <h2>Make your reservation</h2>
       <br>
-      <a href="/tables"><button class="btn btn-primary btn-lg"><span class="fa fa-server"></span> View Tables</button></a>
+      <a href="/tables"><button class="btn btn-primary btn-lg"><span class="fa fa-server"></span> View
+          Tables</button></a>
       <a href="/"><button class="btn"><i class="fa fa-home fa-lg"></i></button></a>
     </div>
     <div class="row">
@@ -64,11 +67,10 @@
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script type="text/javascript">
-  
+
     const randomId = () => '_' + Math.random().toString(36).substr(2, 9);
 
-    // Question: What does this code do?
-    $("#add-btn").on("click", function(event) {
+    $("#add-btn").on("click", function (event) {
       event.preventDefault();
       var newReservation = {
         name: $("#name").val().trim(),
@@ -77,14 +79,20 @@
         uniqueId: randomId(),
       };
 
-      // Question: What does this code do??
-      $.post("/api/table", newReservation)
-        .then(function(data) {
+
+
+      $.post("/api/tables", newReservation)
+        .then(function (data) {
           console.log("add html", data);
-          alert("Adding reservation...");
+          if (data === "Table"){
+            alert ("Your table reservation is in!")
+          } else {
+            alert ("You're on the waitlist!")
+          }
         });
     });
   </script>
 
 </body>
+
 </html>
